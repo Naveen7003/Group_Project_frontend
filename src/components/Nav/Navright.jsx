@@ -19,9 +19,6 @@ const Navright = () => {
   return (
 
     <div className='w-1/2 h-[10vh] relative flex justify-between items-center ml-[2%]'>
-<div>
-  <h1>hlo</h1>
-</div>
       {/* Left side: Search Input */}
       <div className="flex items-center">
         <i className="text-2xl text-zinc-400 ri-search-2-line mr-10"></i>
@@ -60,7 +57,7 @@ const Navright = () => {
             ) : (
               <div onClick={handleLoginLogout} className="flex items-center">
                 <FiLogIn className="w-8 h-8 text-zinc-600 mr-4" />
-               <Link ><span className="text-lg bg-blue-500 rounded px-2 py-1 font-semibold text-white">Login</span></Link> 
+               <Link to={"/login"} ><span className="text-lg bg-blue-500 rounded px-2 py-1 font-semibold text-white">Login</span></Link> 
               </div>
             )}
           </div>
@@ -70,7 +67,7 @@ const Navright = () => {
         {!isLoggedIn && !isSigningUp && (
           <div onClick={handleSignUp} className="flex items-center ml-4">
             <FiUserPlus className="w-8 h-8 text-zinc-600 mr-4" />
-            <span className="text-lg bg-green-500 rounded px-2 py-1 font-semibold text-white">Sign Up</span>
+          <Link to={"/singup"}> <span className="text-lg bg-green-500 rounded px-2 py-1 font-semibold text-white">Sign Up</span></Link> 
           </div>
         )}
       </div>
