@@ -4,6 +4,7 @@ import Navright from "./Nav/Navright"
 import Offercard from './Offercard'
 import Seasonaloffer from './Seasonaloffer'
 import Cards from "./Cards"
+import Footer from './Footer'
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
         <Offercard/>
         <Seasonaloffer/>
         <Cards/>
+        <Footer/>
    </>
   )
 }

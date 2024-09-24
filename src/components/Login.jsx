@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -70,7 +71,7 @@ const Login = () => {
           </div>
 
           <div className="flex justify-end mb-6">
-            <a href="#" className="text-blue-500 text-sm hover:underline">Forgot Password?</a>
+            <Link to={"/ForgetPassword"} className="text-blue-500 text-sm hover:underline">Forgot Password?</Link>
           </div>
 
           <div className="flex items-center justify-center">
@@ -85,7 +86,7 @@ const Login = () => {
           <div className="mt-6 text-center">
             <p className="text-gray-600">
               Don't have an account? 
-              <a href="#" className="text-blue-500 font-semibold hover:underline ml-1">Sign up</a>
+              <Link to={"/singup"} className="text-blue-500 font-semibold hover:underline ml-1">Sign up</Link>
             </p>
           </div>
         </form>

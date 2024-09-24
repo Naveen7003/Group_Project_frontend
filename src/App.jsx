@@ -5,6 +5,8 @@ import RegistrationForm from './components/RegistrationForm';
 import Login from './components/Login';
 import Clothcard from './components/Clothcard';
 import AddClothForm from './components/AddClothForm';
+import ForgetPassword from './components/ForgetPassword';
+import UserProfile from './components/UserProfile';
 
 const App = () => {
 
@@ -20,6 +22,8 @@ const App = () => {
     <Route path='/singup' element={<RegistrationForm/>} />
     <Route path='/login' element={<Login/>} />
     <Route path='/form' element={<AddClothForm/>} />
+    <Route path='/ForgetPassword' element={<ForgetPassword/>} />
+    <Route path='/profile' element={<UserProfile/>} />
 
     </Routes>
 
