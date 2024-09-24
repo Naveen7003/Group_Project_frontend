@@ -17,8 +17,11 @@ const Navright = () => {
   };
 
   return (
-    <div className='w-1/2 h-[10vh] relative flex justify-between items-center ml-[2%]'>
 
+    <div className='w-1/2 h-[10vh] relative flex justify-between items-center ml-[2%]'>
+<div>
+  <h1>hlo</h1>
+</div>
       {/* Left side: Search Input */}
       <div className="flex items-center">
         <i className="text-2xl text-zinc-400 ri-search-2-line mr-10"></i>
