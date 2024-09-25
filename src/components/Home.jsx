@@ -5,7 +5,7 @@ import Offercard from './Offercard'
 import Seasonaloffer from './Seasonaloffer'
 import Cards from "./Cards"
 import Footer from './Footer'
-import axios from '../utils/axios'
+import axios from '../utils/Axios'
 
 const Home = () => {
   const [data, setdata] = useState('');
