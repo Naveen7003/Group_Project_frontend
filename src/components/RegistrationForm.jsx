@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "../utils/axios";
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,15 @@ const RegistrationForm = () => {
     profileImage: "",
     contact: ""
   });
+
+  const registration = async() =>{
+    try {
+    const user = await axios.post("/user/signup", formData);
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const handleChange = (e) => {
     setFormData({
@@ -23,9 +33,12 @@ const RegistrationForm = () => {
     // Form validation logic here
 
     // Submit the form data to the backend
-    console.log(formData);
+
+    registration();
+    console.log("signup done")
   };
 
+  
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <form className="w-full max-w-lg bg-white p-8 rounded-lg shadow-md" onSubmit={handleSubmit}>
