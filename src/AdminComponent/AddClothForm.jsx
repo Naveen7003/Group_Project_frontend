@@ -22,7 +22,7 @@ const AddClothForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`/create-cloth`, formData); // Replace with your actual endpoint
+      const response = await axios.post("https://group-project-tbwn.onrender.com/admin/create-cloth", formData); // Replace with your actual endpoint
       console.log(response.data); // Handle success (e.g., show a message)
       // Reset form
       setFormData({ name: "", category: "", description: "", price: "", clothImage: "" });

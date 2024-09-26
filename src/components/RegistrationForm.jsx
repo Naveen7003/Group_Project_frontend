@@ -22,23 +22,18 @@
 
     const handleSubmit = async(e) => {
       e.preventDefault();
-     try {
-    const response = await axios.post("https://group-project-tbwn.onrender.com/user/signup", formData);
-    console.log(response); // Logs the entire response object
-    console.log(response.data); // Logs the data returned from the server
-    setformData({  username: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      gender: "",
-      profileImage: "",
-      contact: "",})
-} catch (error) {
-    console.error("There was an error making the request:", error);
-    if (error.response) {
-        console.error("Error response:", error.response.data);
-    }
-}
+      try {
+        const response = await axios.post("https://group-project-tbwn.onrender.com/user/signup", formData);
+        console.log("Response: ", response);
+      } catch (error) {
+        if (error.response) {
+          console.error("Response Error:", error.response.data);
+          setErrorMessage(error.response.data.message || "An error occurred");
+        } else {
+          console.error("Error:", error.message);
+          setErrorMessage("An unknown error occurred");
+        }
+      }
       // Validation
       if (formData.password !== formData.confirmPassword) {
         setErrorMessage("Passwords do not match.");

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "../utils/Axios"; // Ensure this points to your Axios instance
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate(); // Hook to programmatically navigate
 
   const handleChange = (e) => {
     setFormData({
@@ -15,10 +18,24 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Submit the form data to the backend
-    console.log(formData);
+    setErrorMessage(""); // Clear previous error messages
+
+    try {
+      const response = await axios.post("https://group-project-tbwn.onrender.com/user/login", formData); // Adjust the endpoint as needed
+      console.log("Login successful:", response.data);
+      
+      // Redirect to dashboard or another page after successful login
+      navigate("/"); // Adjust the route as needed
+    } catch (error) {
+      console.error("Error during login:", error);
+      if (error.response) {
+        setErrorMessage(error.response.data.message || "Login failed. Please try again.");
+      } else {
+        setErrorMessage("Network error. Please try again later.");
+      }
+    }
   };
 
   return (
@@ -28,6 +45,8 @@ const Login = () => {
           <h1 className="text-4xl font-bold text-blue-600">ShopEase</h1>
           <p className="text-gray-500 mt-2">Welcome back! Please login to your account.</p>
         </div>
+
+        {errorMessage && <p className="text-red-500 text-center mb-4">{errorMessage}</p>}
 
         <form onSubmit={handleSubmit}>
           <div className="mb-6">
@@ -86,7 +105,7 @@ const Login = () => {
           <div className="mt-6 text-center">
             <p className="text-gray-600">
               Don't have an account? 
-              <Link to={"/singup"} className="text-blue-500 font-semibold hover:underline ml-1">Sign up</Link>
+              <Link to={"/signup"} className="text-blue-500 font-semibold hover:underline ml-1">Sign up</Link>
             </p>
           </div>
         </form>

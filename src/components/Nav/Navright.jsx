@@ -1,23 +1,24 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-
-import { FiLogIn, FiLogOut, FiUserPlus } from "react-icons/fi"; // Import icons for login/logout and signup
+import { Link, useNavigate } from "react-router-dom";
+import { FiLogIn, FiLogOut } from "react-icons/fi"; // Import login/logout icons
 
 const Navright = () => {
   const [query, setQuery] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State for login/logout
-  const [isSigningUp, setIsSigningUp] = useState(false); // State for showing Sign Up form
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to handle login/logout
+  const navigate = useNavigate(); // Hook to navigate after login/logout
 
-  const handleLoginLogout = () => {
-    setIsLoggedIn(!isLoggedIn); // Toggle login/logout
+  const handleLogin = () => {
+    // Simulate login logic here
+    setIsLoggedIn(true); // Set user as logged in
+    navigate("/login"); // Navigate to dashboard after login (or any page)
   };
 
-  const handleSignUp = () => {
-    setIsSigningUp(!isSigningUp); // Toggle between login/signup
+  const handleLogout = () => {
+    setIsLoggedIn(false); // Set user as logged out
+    navigate("/"); // Navigate to homepage after logout
   };
 
   return (
-
     <div className='w-1/2 h-[10vh] relative flex justify-between items-center ml-[2%]'>
       {/* Left side: Search Input */}
       <div className="flex items-center">
@@ -40,38 +41,21 @@ const Navright = () => {
       </div>
 
       <div className="flex items-center cursor-pointer">
-        {/* If logged in, show logout; if not, show login/signup */}
+        {/* If logged in, show logout; if not, show login */}
         {isLoggedIn ? (
-          <div onClick={handleLoginLogout} className="flex items-center">
+          <div onClick={handleLogout} className="flex items-center">
             <FiLogOut className="w-8 h-8 text-zinc-600 mr-4" />
             <span className="text-lg font-semibold bg-red-500 px-2 py-1 rounded text-white">Logout</span>
           </div>
         ) : (
-          <div className="flex items-center space-x-4">
-            {/* Toggle between Sign Up and Login based on current mode */}
-            {isSigningUp ? (
-              <div onClick={handleSignUp} className="flex items-center">
-                <FiUserPlus className="w-8 h-8 text-zinc-600 mr-4" />
-                <span className="text-lg bg-green-500 rounded px-2 py-1 font-semibold text-white">Sign Up</span>
-              </div>
-            ) : (
-              <div onClick={handleLoginLogout} className="flex items-center">
-                <FiLogIn className="w-8 h-8 text-zinc-600 mr-4" />
-               <Link to={"/login"} ><span className="text-lg bg-blue-500 rounded px-2 py-1 font-semibold text-white">Login</span></Link> 
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Button to switch between Login and Sign Up */}
-        {!isLoggedIn && !isSigningUp && (
-          <div onClick={handleSignUp} className="flex items-center ml-4">
-            <FiUserPlus className="w-8 h-8 text-zinc-600 mr-4" />
-          <Link to={"/singup"}> <span className="text-lg bg-green-500 rounded px-2 py-1 font-semibold text-white">Sign Up</span></Link> 
+          <div onClick={handleLogin} className="flex items-center">
+            <FiLogIn className="w-8 h-8 text-zinc-600 mr-4" />
+            <span className="text-lg font-semibold bg-blue-500 px-2 py-1 rounded text-white">Login</span>
           </div>
         )}
       </div>
 
+      {/* Show query results */}
       {query.length > 0 && (
         <div className='w-[60%] max-h-[50vh] absolute bg-zinc-200 top-[90%] overflow-auto rounded-md shadow-lg'>
           <div className='font-semibold hover:text-zinc-950 text-zinc-600 p-4 border-b-2 border-zinc-100 hover:bg-zinc-100 duration-300 cursor-pointer'>
