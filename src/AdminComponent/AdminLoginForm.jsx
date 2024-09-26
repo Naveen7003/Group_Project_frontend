@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios from "../utils/Axios"; // assuming this is your axios instance
+import { useNavigate } from "react-router-dom"; // Import useNavigate hook
+import axios from "../utils/Axios"; // Assuming this is your axios instance
 
 const AdminLoginForm = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,7 @@ const AdminLoginForm = () => {
   });
 
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate(); // Initialize the useNavigate hook
 
   // Handle form changes
   const handleChange = (e) => {
@@ -29,8 +31,8 @@ const AdminLoginForm = () => {
       const response = await axios.post("https://group-project-tbwn.onrender.com/admin/signin", formData);
       console.log("Admin logged in:", response.data);
 
-      // Redirect or do something after successful login
-      // For example, you might want to redirect to the admin dashboard
+      // Redirect to admin dashboard after successful login
+      navigate("/admin/form"); // Change "/admin/dashboard" to the desired route
     } catch (error) {
       console.error("Error during admin login:", error);
       if (error.response) {

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "../utils/Axios"; // Ensure this points to your Axios instance
+import axios from "../utils/Axios";
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate(); // Hook to programmatically navigate
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -20,14 +20,14 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage(""); // Clear previous error messages
+    setErrorMessage("");
 
     try {
-      const response = await axios.post("https://group-project-tbwn.onrender.com/user/login", formData); // Adjust the endpoint as needed
+      const response = await axios.post("https://group-project-tbwn.onrender.com/user/login", formData);
       console.log("Login successful:", response.data);
       
-      // Redirect to dashboard or another page after successful login
-      navigate("/"); // Adjust the route as needed
+      setIsLoggedIn(true); // Set login state to true
+      navigate("/"); // Redirect to dashboard or another page
     } catch (error) {
       console.error("Error during login:", error);
       if (error.response) {
