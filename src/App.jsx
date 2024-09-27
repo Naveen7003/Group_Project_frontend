@@ -12,13 +12,17 @@ import AdminProducts from './AdminComponent/AdminProducts';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+
   return (
-    <div className='h-screen m-w-screen '>
+    <div className='h-screen max-w-screen'>
       <Routes>
+        {/* Home route: passing isLoggedIn and setIsLoggedIn */}
         <Route path='/' element={<Home isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path='/signup' element={<RegistrationForm />} />
+
+        <Route path='/signup' element={<RegistrationForm setIsLoggedIn={setIsLoggedIn} />} />
+
         <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+
         <Route path='/admin/form' element={<AddClothForm />} />
         <Route path='/ForgetPassword' element={<ForgetPassword />} />
         <Route path='/profile' element={<UserProfile />} />
