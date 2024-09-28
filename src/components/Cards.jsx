@@ -31,7 +31,7 @@ const Cards = () => {
         <Clothcard key={cloth.id} cloth={cloth} />
       ))}
     </div>
-    <div>hdfdfdsf</div>
+    
   </div>
   
 
