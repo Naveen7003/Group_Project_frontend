@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate hook
-import axios from "../utils/Axios"; // Assuming this is your axios instance
+import { useDispatch } from "react-redux";
+import { adminSignin } from "../store/Actions/adminActions";
 
 const AdminLoginForm = () => {
+  const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -21,23 +23,14 @@ const AdminLoginForm = () => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    // Clear previous error messages
-    setErrorMessage("");
-
+    e.preventDefault()
     try {
-      // API call to login admin
-      const response = await axios.post("https://group-project-tbwn.onrender.com/admin/signin", formData);
-      console.log("Admin logged in:", response.data);
-
-      // Redirect to admin dashboard after successful login
-      navigate("/admin/form"); // Change "/admin/dashboard" to the desired route
+      // Dispatch the adminSignup action with form data (email and password)
+      dispatch(adminSignin(formData))
+      navigate("/admin/products"); // Navigate to products page if signup is successful
     } catch (error) {
-      console.error("Error during admin login:", error);
-      if (error.response) {
-        setErrorMessage(error.response.data.message || "Error logging in.");
-      }
+      console.error("Failed to signup admin. Error:", error);
+      setErrorMessage("Failed to sign up. Please try again.");
     }
   };
 
@@ -86,7 +79,7 @@ const AdminLoginForm = () => {
             type="submit"
           >
             Login
-          </button>
+          </button >
         </div>
       </form>
     </div>
