@@ -9,6 +9,8 @@ import AdminLoginForm from './AdminComponent/AdminLoginForm';
 import AddClothForm from './AdminComponent/AddClothForm';
 import { useState } from 'react';
 import AdminProducts from './AdminComponent/AdminProducts';
+import Order from './components/Order';
+import AddToCart from './components/AddToCart';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,6 +30,8 @@ const App = () => {
         <Route path='/profile' element={<UserProfile />} />
         <Route path='/adminlogin' element={<AdminLoginForm />} />
         <Route path='/admin/products' element={<AdminProducts />} />
+        <Route path='/order' element={<Order />} />
+        <Route path="/add-to-cart" element={<AddToCart />} />
       </Routes>
     </div>
   );
