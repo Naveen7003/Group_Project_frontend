@@ -1,4 +1,4 @@
-import axios from "../utils/Axios";
+import axios from "../utils/axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -58,6 +58,7 @@ const RegistrationForm = ({ setIsLoggedIn }) => {
     }
   };
 
+  
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <form className="w-full max-w-lg bg-white p-8 rounded-lg shadow-md" onSubmit={handleSubmit}>
