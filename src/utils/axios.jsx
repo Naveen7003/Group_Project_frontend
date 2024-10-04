@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const instance = axios.create({
-    baseURL: "https://group-project-tbwn.onrender.com",
+    baseURL: "http://localhost:8000",
     withCredentials:true,
 })
 
