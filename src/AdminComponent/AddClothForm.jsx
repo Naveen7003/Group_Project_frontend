@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios"; // Make sure to install axios if you haven't already
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { createCloth } from "../store/Actions/adminActions";
 
 const AddClothForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     category: "",
@@ -20,15 +24,12 @@ const AddClothForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post("https://group-project-tbwn.onrender.com/admin/create-cloth", formData); // Replace with your actual endpoint
-      console.log(response.data); // Handle success (e.g., show a message)
-      // Reset form
-      setFormData({ name: "", category: "", description: "", price: "", clothImage: "" });
+      dispatch(createCloth(formData))
+      console.log("ho gya");
+      navigate("/admin/products")
     } catch (error) {
-      console.error("Error adding cloth:", error);
-      // Handle error (e.g., show an error message)
+      console.log("tata good bye gya ")
     }
   };
 

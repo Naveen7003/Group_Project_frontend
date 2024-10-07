@@ -2,16 +2,14 @@ import { saveAdmin } from "../Reducers/adminReducer";
 import axios from '../../utils/axios'
 
 
-export const currentAdmin = (token) => async (dispatch, getState) => {
+export const currentAdmin = () => async (dispatch, getState) => {
     try {
-        const Admin = await axios.post("/admin/current", token)
-        dispatch(saveAdmin());
-        console.log(Admin)
+        const Admin = await axios.post("/admin/current")
+        dispatch(saveAdmin(Admin));
     } catch (error) {
         console.log("current Admin not working")
     }
 };
-
 
 export const adminSignin = (user) => async (dispatch, getState) => {
     try {
@@ -22,5 +20,14 @@ export const adminSignin = (user) => async (dispatch, getState) => {
         console.log("Error in signin");
     }
 };
+
+export const createCloth = (cloth) => async (dispatch, getState) => {
+    try {
+        await axios.post("/admin/create-cloth", cloth);
+        console.log('bindaaaas');
+    } catch (error) {
+        console.log("error")
+    }
+}
 
 
