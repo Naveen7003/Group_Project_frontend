@@ -38,6 +38,7 @@ const Login = ({ setIsLoggedIn }) => {
     }
   };
 
+
   return (
     <div className="flex justify-center items-center h-[80%] pt-20 bg-gray-50">
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">

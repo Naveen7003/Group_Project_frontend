@@ -13,7 +13,7 @@ export const currentAdmin = () => async (dispatch, getState) => {
 
 export const adminSignin = (user) => async (dispatch, getState) => {
     try {
-       const response=  await axios.post("/admin/signup", user);
+       const response=  await axios.post("/admin/signin", user);
        console.log(response);
         dispatch(currentAdmin()); // Pass token and id to currentAdmin after signup
     } catch (error) {
